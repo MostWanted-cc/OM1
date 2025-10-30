@@ -39,7 +39,7 @@ class CortexRuntime:
         self,
         config: RuntimeConfig,
         config_name: str,
-        hot_reload: bool = False,
+        hot_reload: bool = True,
         check_interval: float = 60.0,
     ):
         """
@@ -52,9 +52,9 @@ class CortexRuntime:
         config_name : str
             Name of the configuration file for hot-reload functionality.
         hot_reload : bool
-            Whether to enable hot-reload functionality.
+            Whether to enable hot-reload functionality. (default: True)
         check_interval : float
-            Interval in seconds between config file checks for hot-reload.
+            Interval in seconds between config file checks for hot-reload. (default: 60.0)
         """
         self.config = config
         self.config_name = config_name

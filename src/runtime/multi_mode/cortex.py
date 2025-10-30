@@ -30,7 +30,7 @@ class ModeCortexRuntime:
         self,
         mode_config: ModeSystemConfig,
         mode_config_name: str,
-        hot_reload: bool = False,
+        hot_reload: bool = True,
         check_interval: int = 60,
     ):
         """
@@ -43,7 +43,7 @@ class ModeCortexRuntime:
         mode_config_name : str
             The name of the configuration file (used for logging purposes)
         hot_reload : bool, optional
-            Enable hot-reload of configuration files (default: False)
+            Enable hot-reload of configuration files (default: True)
         check_interval : int, optional
             Interval in seconds to check for config file changes (default: 60)
         """
