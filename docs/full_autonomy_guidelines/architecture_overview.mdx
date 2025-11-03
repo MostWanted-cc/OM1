@@ -21,6 +21,7 @@ The robotics middleware that provides:
 - SLAM (Simultaneous Localization and Mapping)
 - Navigation and motion planning
 - Low-level robot control
+- Auto charging
 
 ### 3. OM1 Avatar (`om1-avatar`)
 Frontend interface components:
@@ -35,6 +36,7 @@ Media handling subsystem:
 - Camera feed processing
 - Face detection and recognition
 - Video and audio streaming to RTSP server
+- Face detection and anonymisation
 
 We currently provide full autonomy for Unitree G1 and Go2 through the BrainPack.
 
@@ -54,12 +56,22 @@ We currently provide full autonomy for Unitree G1 and Go2 through the BrainPack.
 5. RTSP Streaming
     The om1-video-processor component streams video and audio data to an RTSP server, enabling real-time video and audio streaming to external systems.
 
+6. Openmind Privacy System - Face detection and Anonymisation
+    A real-time, on-device face detection and blurring module designed to protect personal identity during video capture and streaming. It runs entirely on the robot’s edge device, requiring no cloud or network connectivity.
+
+7. Auto charging
+    The system uses AprilTag-based visual docking combined with Nav2 navigation. When the robot needs to charge, it navigates to the charging station's general area using the Nav2 stack. Once nearby, it switches to precision docking mode where it detects AprilTags mounted on or near the charging dock using its onboard cameras.
+    The docking process involves:
+        -Visual servoing - The robot aligns itself with the charging station by tracking the AprilTag's pose
+        -Precise approach - It approaches the dock using the tag's position and orientation data
+        -Physical docking - The robot positions itself so its charging contacts align with the charging pad's contact points
+
 ## Getting Started
 
 ### Prerequisites
 - Docker and Docker Compose installed
 - Access to all required repositories
-- Proper hardware setup (Unitree Go2 robot)
+- Proper hardware setup
 
 ### Quick Start
 1. Clone all required repositories:
@@ -100,4 +112,4 @@ We currently provide full autonomy for Unitree G1 and Go2 through the BrainPack.
 
 Your robot is now ready to accompany you, assist with tasks, explore new environments, and learn alongside you.
 
-Note : We currently support Full autonomy for Unitree Go2 robot.
+Note : We currently support Full autonomy for Unitree Go2 robot.Full autonomy for Unitree G1 will be released soon.
