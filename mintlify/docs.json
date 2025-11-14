@@ -123,6 +123,23 @@
                 ]
             },
             {
+                "tab": "Developer Cookbook",
+                "groups": [
+                    {
+                        "group": "Developer Cookbook",
+                        "pages": [
+                            "developer_cookbook/introduction"
+                        ]
+                    },
+                    {
+                        "group": "OM Core Endpoints",
+                        "pages": [
+                            "api-reference/endpoints/account_and_key_management"
+                        ]
+                    }
+                ]
+            },
+            {
                 "tab": "API Reference",
                 "groups": [
                     {
