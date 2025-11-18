@@ -133,6 +133,7 @@
                     {
                         "group": "Recipes",
                         "pages": [
+                            "developer_cookbook/config",
                             "developer_cookbook/introduction"
                         ]
                     },

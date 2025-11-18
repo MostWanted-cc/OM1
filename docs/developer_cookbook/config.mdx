@@ -1,0 +1,21 @@
+---
+title: Build a fresh config file
+description: "Config"
+---
+
+The config file defines the agent that runs on your machine.
+It tells OM1 which modules to load, how the robot should behave, and which modes are available.
+
+To ensure your configuration is valid, follow the format defined [here](https://github.com/OpenMind/OM1/tree/main/config/schema).
+
+OpenMind supports two configuration schemas:
+
+1. Single-Mode Schema
+
+Use this when your robot only needs to run one dedicated mode. For example, a pure conversation agent or a navigation-only setup.
+The entire agent is optimized around a single use case.
+
+2. Multi-Mode Schema
+
+Use this when you want the robot to switch between multiple modes at runtime based on user choice or context.
+You can configure any subset of the available five modes, just two, or all five, depending on your application.
