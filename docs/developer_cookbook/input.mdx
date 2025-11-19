@@ -3,3 +3,33 @@ title: New Input Plugin
 description: "Build a new input plugin"
 ---
 
+Create a Provider class here `/src/providers`
+To proceed with a new input plugin integration, create a python file.
+Define important functions
+Define start and stop functions
+
+File Location: /src/inputs/plugins/your_plugin.py
+
+Required imports -
+```bash
+from inputs.base import Sensor, SensorConfig
+from inputs.base.loop import FuserInput
+```
+
+## Implementation Steps
+### Step 1: Create Plugin Class
+```bash
+class YourInput(FuserInput[YourRawType]):
+    def __init__(self, config: SensorConfig = SensorConfig()):
+        super().__init__(config)
+        # Initialize your plugin-specific resources
+```
+
+### Step 2: Implement Required Methods
+
+Plugin Registration
+Automatic Discovery:
+
+Plugins are auto-discovered via find_module_with_class() in /src/inputs/__init__.py
+Class must inherit from FuserInput
+Uses regex pattern to find classes matching class {ClassName}(FuserInput)

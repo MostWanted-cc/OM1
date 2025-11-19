@@ -130,7 +130,8 @@
                         "pages": [
 
                             "developer_cookbook/introduction",
-                            "developer_cookbook/config"
+                            "developer_cookbook/config",
+                            "developer_cookbook/new_mode"
                         ]
                     },
                     {

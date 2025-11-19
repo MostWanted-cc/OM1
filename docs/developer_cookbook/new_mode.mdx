@@ -3,3 +3,158 @@ title: New Mode
 description: "Add a new mode"
 ---
 
+This guide walks you through creating a new mode for your robot system.
+
+## Project Structure
+```
+src/runtime/multi_mode/
+├── config.py          # ModeConfig and ModeSystemConfig classes
+├── manager.py          # ModeManager for transitions
+├── cortex.py           # ModeCortexRuntime for execution
+└── hook.py            # Lifecycle hooks
+
+config/
+└── your_robot_modes.json5    # Mode configuration file
+```
+
+## Step 1: Locate Your Configuration File
+Create or modify a configuration file (e.g., your_robot_modes.json5) in the /config/ directory:
+
+## Step 2: Add Mode Definition
+Add your new mode to the modes section:
+
+```bash
+    "your_new_mode": {
+    "display_name": "Your New Mode",
+    "description": "Brief description of what this mode does",
+    "system_prompt_base": "You are in [mode name]. Your purpose is...",
+    "hertz": 1.0,
+    "timeout_seconds": 300,
+    "remember_locations": false,
+    "save_interactions": true,
+    "agent_inputs": [...],
+    "agent_actions": [...],
+    "lifecycle_hooks": [...],
+    "simulators": [...],
+    "cortex_llm": {...}
+    }
+```
+**Configuration Parameters**
+
+- display_name: Human-readable name shown in the UI
+- description: Brief explanation of the mode's purpose
+- system_prompt_base: Initial prompt that defines the mode's behavior
+- hertz: Execution frequency (cycles per second)
+- timeout_seconds: Maximum duration before automatic timeout
+- remember_locations: Whether to persist location data
+- save_interactions: Whether to log mode interactions
+
+Step 3: Configure Input Plugins
+
+Specify which inputs your mode needs:
+```bash"agent_inputs": [
+  {
+    "type": "InputPluginName",
+    "config": {
+      "param1": "value1"
+    }
+  }
+]
+```
+
+Step 4: Configure Actions
+
+Define what actions the mode can perform:
+
+```bash
+"agent_actions": [
+  {
+    "type": "ActionPluginName",
+    "config": {
+      "param1": "value1"
+    }
+  }
+]
+```
+
+Step 5: Configure LLM (Optional)
+
+```bash
+"cortex_llm": {
+  "type": "OpenAILLM",
+  "config": {
+    "model": "gpt-4",
+    "api_key": "your-key"
+  }
+}
+```
+
+Step 6 : Add Lifecycle hooks
+
+```bash
+    "lifecycle_hooks": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "required": ["hook_type", "handler_type", "handler_config"],
+            "properties": {
+                "hook_type": {
+                    "type": "string",
+                    "enum": ["on_startup", "on_shutdown", "on_entry", "on_exit", "on_timeout"]
+                },
+                "handler_type": {
+                    "type": "string",
+                    "enum": ["message", "command", "function", "action"]
+                },
+                "handler_config": {
+                    "type": "object",
+                    "properties": {
+                        "message": {"type": "string"},
+                        "command": {"type": "string"},
+                        "function": {"type": "string"},
+                        "action": {"type": "string"}
+                    }
+                },
+                "priority": {"type": "integer"},
+                "async_execution": {"type": "boolean"},
+                "timeout_seconds": {"type": "number"},
+                "on_failure": {
+                    "type": "string",
+                    "enum": ["log", "ignore", "abort"]
+                }
+            }
+        }
+    }
+```
+
+Step 7: Add Transition Rules
+
+Add to the transition_rules section:
+
+```bash
+    "transition_rules": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "required": ["from_mode", "to_mode", "transition_type", "trigger_keywords", "priority"],
+            "properties": {
+                "from_mode": {"type": "string"},
+                "to_mode": {"type": "string"},
+                "transition_type": {"type": "string"},
+                "trigger_keywords": {
+                    "type": "array",
+                    "items": {"type": "string"}
+                },
+                "priority": {"type": "integer"},
+                "cooldown_seconds": {"type": "number"}
+            }
+        }
+    }
+```
+
+Step 8: Update Default Mode (Optional)
+
+If this should be the starting mode:
+```bash
+"default_mode": "your_new_mode"
+```
