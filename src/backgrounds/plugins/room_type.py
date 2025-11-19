@@ -1,9 +1,7 @@
 import logging
 
 from backgrounds.base import Background, BackgroundConfig
-from providers.room_type_location_provider import (
-    RoomTypeLocationProvider,
-)
+from providers.room_type_location_provider import RoomTypeLocationProvider
 
 
 class RoomTypeLocation(Background):
