@@ -81,7 +81,7 @@
                 ]
             },
             {
-                "tab": "Core Concepts",
+                "tab": "Developer Cookbook",
                 "groups": [
                     {
                         "group": "Input Plugins",
@@ -124,17 +124,13 @@
                             "full_autonomy_guidelines/lifecycle"
                         ]
 
-                    }
-                ]
-            },
-            {
-                "tab": "Developer Cookbook",
-                "groups": [
+                    },
                     {
                         "group": "Recipes",
                         "pages": [
-                            "developer_cookbook/config",
-                            "developer_cookbook/introduction"
+
+                            "developer_cookbook/introduction",
+                            "developer_cookbook/config"
                         ]
                     },
                     {
