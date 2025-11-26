@@ -3,33 +3,62 @@ title: New Input Plugin
 description: "Build a new input plugin"
 ---
 
-Create a Provider class here `/src/providers`
-To proceed with a new input plugin integration, create a python file.
-Define important functions
-Define start and stop functions
+## Overview
+This guide walks you through creating a new input plugin for OM1. Input plugins allow you to integrate various data sources and sensors into your agent.
 
-File Location: /src/inputs/plugins/your_plugin.py
+## Prerequisites
+
+- Understanding of Python classes and inheritance
+- Familiarity with async programming (if your plugin requires it)
+- Knowledge of the data source you're integrating
+
+## Implementation Steps
+
+### Step 1: Create a Provider class (Optional)
+If your plugin requires complex initialization or external service integration, create a provider class.
+
+Location: /src/providers/your_provider.py
+
+### Step 2: Create a new Plugin File
+
+To proceed with a new input plugin integration, create a python file.
+Location: `/src/inputs/plugins/your_plugin.py`
 
 Required imports -
 ```bash
 from inputs.base import Sensor, SensorConfig
 from inputs.base.loop import FuserInput
+from providers.plugin_provider import PluginProvider # import your provider class (if defined)
+from providers.io_provider import IOProvider
 ```
 
-## Implementation Steps
-### Step 1: Create Plugin Class
+### Step 3: Implement Your Plugin Class
+
 ```bash
 class YourInput(FuserInput[YourRawType]):
     def __init__(self, config: SensorConfig = SensorConfig()):
         super().__init__(config)
         # Initialize your plugin-specific resources
+        self.plugin = PluginProvider()
+        self.io_provider = IOProvider()
+        self.messages: list[Message] = []
 ```
 
-### Step 2: Implement Required Methods
+### Step 4: Implement Required Methods
 
-Plugin Registration
-Automatic Discovery:
+## Plugin Registration
 
-Plugins are auto-discovered via find_module_with_class() in /src/inputs/__init__.py
-Class must inherit from FuserInput
-Uses regex pattern to find classes matching class {ClassName}(FuserInput)
+**Automatic Discovery** - Plugins are automatically discovered by the system. No manual registration required!
+
+### How it works:
+
+    - The system scans /src/inputs/plugins/ directory
+    - Uses find_module_with_class() in /src/inputs/__init__.py
+    - Finds all classes inheriting from FuserInput
+    - Uses regex pattern: class {ClassName}(FuserInput)
+
+### Requirements for auto-discovery:
+
+    - Class must inherit from FuserInput
+    - File must be in /src/inputs/plugins/ directory
+    - Use standard class declaration syntax
