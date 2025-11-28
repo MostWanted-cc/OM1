@@ -9,7 +9,7 @@ This guide walks you through creating a new input plugin for OM1. Input plugins 
 ## Prerequisites
 
 - Understanding of Python classes and inheritance
-- Familiarity with async programming (if your plugin requires it)
+- Familiarity with async programming
 - Knowledge of the data source you're integrating
 
 ## Implementation Steps
@@ -45,6 +45,28 @@ class YourInput(FuserInput[YourRawType]):
 ```
 
 ### Step 4: Implement Required Methods
+
+Implement any methods that will be required for the setup. Here are a few examples-
+
+```bash
+    async def start(self) -> None:
+        """
+        Initialize and start the input plugin.
+        Called when the plugin begins operation.
+        """
+        self._is_running = True
+        # Set up connections, open files, initialize hardware, etc.
+        await self._connect()
+    
+    async def stop(self) -> None:
+        """
+        Cleanly shutdown the input plugin.
+        Called when the plugin should stop operation.
+        """
+        self._is_running = False
+        # Close connections, release resources, cleanup
+        await self._disconnect()
+```
 
 ## Plugin Registration
 
