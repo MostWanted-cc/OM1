@@ -38,7 +38,7 @@ git submodule update --init
 uv venv
 ```
 
-### Install Dependencies
+### Install Dependencies hz
 
 For MacOS
 ```bash
