@@ -9,7 +9,7 @@
 
 **OpenMind's OM1 is a modular AI runtime that empowers developers to create and deploy multimodal AI agents across digital environments and physical robots**, including Humanoids, Phone Apps, websites, Quadrupeds, and educational robots such as TurtleBot 4. OM1 agents can process diverse inputs like web data, social media, camera feeds, and LIDAR, while enabling physical actions including motion, autonomous navigation, and natural conversations. The goal of OM1 is to make it easy to create highly capable human-focused robots, that are easy to upgrade and (re)configure to accommodate different physical form factors.
 
-## Capabilities of OM1
+## Capabilities of OM1 in openmind 
 
 * **Modular Architecture**: Designed with Python for simplicity and seamless integration.
 * **Data Input**: Easily handles new data and sensors.
