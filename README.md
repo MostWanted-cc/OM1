@@ -21,7 +21,7 @@
 ![Artboard 1@4x 1 (1)](https://github.com/user-attachments/assets/dd91457d-010f-43d8-960e-d1165834aa58)
 
 
-## Getting Started
+## Getting Started lets go
 
 To get started with OM1, let's run the Spot agent. Spot uses your webcam to capture and label objects. These text captions are then sent to the LLM, which returns `movement`, `speech` and `face` action commands. These commands are displayed on WebSim along with basic timing and other debugging information.
 
